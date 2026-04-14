@@ -1,0 +1,67 @@
+# HEADERS = {
+#     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+# }
+
+# def scrape_internshala(keywords=["python", "flask", "ai", "machine learning"], max_pages=2):
+#     all_jobs = []
+
+#     for keyword in keywords:
+#         print(f"scraping: {keyword}")
+#         for page in range(1, max_pages+1):
+#             url = f"https://internshala.com/internships/{keyword}-internship/page-{page}"
+
+#             try:
+#                 response = requests.get(url, headers=HEADERS, timeout=10)
+#                 if response.status_code != 200:
+#                     print(f"Failed: {url} - status {response.status_code}")
+
+#                 jobs  = parse_listings(response.text, keyword)
+#                 all_jobs.extend(jobs)
+                
+#                 print(f" Page {page}: found {len(jobs)} listings")
+
+#                 time.sleep(1.5)
+
+#             except Exception as e:
+#                 print(f"Error scraping {url}: {e}")
+
+#                 continue
+#     return all_jobs
+
+# def parse_listings(html, source_keyword):
+#     soup = BeautifulSoup(html, "html.parser")
+#     listings = []
+
+#     cards = soup.find_all("div", class_="internship_meta")
+
+#     for card in cards:
+#         try:
+#             title = card.find("h3", class_="job-internship-name")
+#             company = card.find("p", class_="company-name")
+#             location = card.find("a", class_="location_link")
+#             stipend = card.find("span", class_="stipend")
+#             duration = card.find("div", class_="item_body")
+#             link_tag = card.find_previous("a", href=True)
+
+#             job = {
+#                 # "title": clean(title),
+#                 "company": clean(company),
+#                 "location": clean(location),
+#                 "stipend": clean(stipend),
+#                 "duration": clean(duration),
+#                 "source": "internshala",
+#                 "keyword": source_keyword,
+#                 "url":  "https://internshala.com" + link_tag["href"] if link_tag else "",
+#             }
+            
+#             if job["title"] and job["company"]:
+#                 listings.append(job)
+#         except Exception as e:
+#             continue
+#     return listings
+
+# def clean(tag):
+#     if tag is None:
+#         return ""
+#     return tag.get_text(strip=True)
+        
