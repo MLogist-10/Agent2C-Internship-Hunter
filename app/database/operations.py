@@ -53,7 +53,7 @@ def get_unscored_jobs():
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM jobs WHERE ai_score = 0")
-    jobs = [dict(row) for row in cursor.featchall()]
+    jobs = [dict(row) for row in cursor.fetchall()]
     conn.close()
     return jobs
 
