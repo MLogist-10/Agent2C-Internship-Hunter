@@ -10,6 +10,10 @@ short_description: An agentic system to scrap, analyze and present.
 
 # Internship Hunter
 
+This is my internship hunting tool running on Gunicorn.
+
+# Internship Hunter
+
 An AI-powered internship tracker that scrapes listings, ranks them 
 using an AI agent based on your profile, and alerts you to the best matches.
 
@@ -28,6 +32,3 @@ source venv/bin/activate
 pip install -r requirements.txt
 python run.py
 ```
-
-
-
