@@ -1,3 +1,17 @@
+---
+title: Internship Hunter
+emoji: 🏃
+colorFrom: green
+colorTo: indigo
+sdk: docker
+pinned: false
+short_description: An agentic system to scrap, analyze and present.
+---
+
+# Internship Hunter
+
+This is my internship hunting tool running on Gunicorn.
+
 # Internship Hunter
 
 An AI-powered internship tracker that scrapes listings, ranks them 
