@@ -8,7 +8,6 @@ pinned: false
 short_description: An agentic system to scrap, analyze and present.
 ---
 
-<<<<<<< HEAD
 # Internship Hunter
 
 An AI-powered internship tracker that scrapes listings, ranks them 
@@ -29,7 +28,6 @@ source venv/bin/activate
 pip install -r requirements.txt
 python run.py
 ```
-=======
----
+
 
 
