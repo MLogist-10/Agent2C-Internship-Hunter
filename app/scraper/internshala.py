@@ -16,10 +16,12 @@ Password = os.getenv("Internshala_Password")
 
 def get_driver():
     options = uc.ChromeOptions()
-    options.add_argument("--window-size=1920,1080")
+    options.add_argument("--headless=new")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
-    driver = uc.Chrome(options=options, version_main=146)
+    options.add_argument("--window-size=1920,1080")
+    options.binary_location = "/usr/bin/google-chrome-stable"
+    driver = uc.Chrome(options=options, version_main=134)
     return driver
 
 def login(driver):
