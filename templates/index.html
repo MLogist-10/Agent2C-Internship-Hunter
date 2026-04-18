@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <p class="text-muted mb-0">{{ jobs|length }} listings · sorted by AI score</p>
+    <div>
+        <a href="/?filter=all" class="btn btn-sm btn-outline-secondary me-1">All</a>
+        <a href="/?filter=top" class="btn btn-sm btn-outline-success me-1">Top Picks (8+)</a>
+        <a href="/?filter=applied" class="btn btn-sm btn-outline-primary">Applied</a>
+    </div>
+</div>
+
+{% if jobs %}
+{% for job in jobs %}
+<div class="card mb-2 border-0 shadow-sm">
+    <div class="card-body py-3">
+        <div class="row align-items-center">
+
+            <div class="col-8">
+                <div class="fw-semibold">{{ job.title }}</div>
+                <div class="text-muted small">{{ job.company }}
+                    {% if job.location %} · {{ job.location }}{% endif %}
+                </div>
+                <div class="small mt-1">
+                    {% if job.stipend %}<span class="me-2">💰 {{ job.stipend }}</span>{% endif %}
+                    {% if job.duration %}<span>🕐 {{ job.duration }}</span>{% endif %}
+                </div>
+                {% if job.ai_reason %}
+                <div class="text-secondary mt-1" style="font-size:12px">🤖 {{ job.ai_reason }}</div>
+                {% endif %}
+            </div>
+
+            <div class="col-4 text-end">
+                {% if job.ai_score >= 8 %}
+                    <span class="badge bg-success fs-6 mb-2">{{ job.ai_score }}/10</span>
+                {% elif job.ai_score >= 5 %}
+                    <span class="badge bg-warning text-dark fs-6 mb-2">{{ job.ai_score }}/10</span>
+                {% elif job.ai_score > 0 %}
+                    <span class="badge bg-danger fs-6 mb-2">{{ job.ai_score }}/10</span>
+                {% else %}
+                    <span class="badge bg-secondary mb-2">Unscored</span>
+                {% endif %}
+                <div class="mt-1">
+                    <a href="{{ job.url }}" target="_blank" class="btn btn-sm btn-outline-dark me-1">View</a>
+                    {% if job.applied %}
+                        <span class="badge bg-secondary">Applied ✓</span>
+                    {% else %}
+                        <a href="/apply/{{ job.id }}" class="btn btn-sm btn-outline-primary">Applied?</a>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% else %}
+<div class="text-center text-muted mt-5">
+    <p>No jobs yet. Click <strong>Scrape</strong> to fetch listings.</p>
+</div>
+{% endif %}
+
+{% endblock %}
